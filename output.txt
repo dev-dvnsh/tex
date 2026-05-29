@@ -1,0 +1,29 @@
+Unit T 12 Lectures
+
+Introduction: Object Oriented Programming, History and Basics of Java, JDK, JRE, JVM, Java Datd
+Types, Operator, basic of Java and its fundaments, conditional & looping, working with arays an
+strings, String, String Bufter, and String Builder classes. Introduction of Classes: Fundamental of
+
+Classes and Methods, Constructors, Overloading Methods,
+
+Unit 1T 12 Lectures
+
+Extending Classes and Inheritance: Fundamental of Inheritance, Typo of Inheritance. Interfaces,
+implementing multiple inheritance using interfuce, built in package, creating own package. Exception
+Handling: Exception Handling basics, try, catch and finally, throw and irows clause. Multithreading
+Programming: implomenting multithreading, life cycle of a thread,thread communication, suspending,
+rosuming, deadlock and stopping threads, handling exceptions during multithreading,
+
+Unit 1T 12 Lectures
+
+Working with Abstract Windows Teolkit: Creating GUI in Java Using AWT, Working with Frame
+and Text, GUI Components, Mcnus and Layout Managers. Java Swings: java Foundation Class
+Hierarchy of Java Swing classcs, Swing components, JButton class, JRadioButton class, JTextArea
+class, JComboBox class, JTable class, JColorChooser class, JProgressBar class, ISlider class,
+
+Unit IV 12 Lectures
+
+Event Handling: Iniroduction, Event Classes, and Listener Interfaces. Accessing Databases with
+IDBC: Installing MySQL,Setting up 2 MySQL User Account, Manipulation Databases with JDBC,
+RowSet Interface, ResultSet.
+
