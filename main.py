@@ -26,7 +26,7 @@ For Batch images/folder: "tex -f path/to/folder/" or "tex path/to/folder/"
     parser.add_argument("-f", "--folder", help="batch the folder ")
     parser.add_argument("-l", "--lang", help="Takes language of text", default="eng")
     parser.add_argument("-o", "--output", help="Takes the output path")
-    parser.add_argument("--verbose", action="store_true")
+    parser.add_argument("--verbose", action="store_true", help="Gives verbose output")
     parser.add_argument(
         "--preprocess", action="store_true", help="Clears image before conversion"
     )
@@ -97,10 +97,14 @@ For Batch images/folder: "tex -f path/to/folder/" or "tex path/to/folder/"
         else:
             path = "."
 
+        extensions = ["*.png", "*.jpg", "*.jpeg", "*.bmp", "*.tiff", "*.webp"]
+        files = []
         if args.recursive:
-            files = list(Path(path).rglob("*.png"))
+            for single_extention in extensions:
+                files.extend(Path(path).rglob(single_extention))
         else:
-            files = list(Path(path).glob("*.png"))
+            for single_extention in extensions:
+                files.extend(Path(path).glob(single_extention))
         success = 0
         for pos, item in enumerate(files, start=1):
             try:
