@@ -74,7 +74,7 @@ For Batch images/folder: "tex -f path/to/folder/" or "tex path/to/folder/"
         else:
             path = args.image
             parent = Path(path).parent
-            newPath = parent / "output.txt"
+            newPath = parent / f"{Path(args.image).stem}_output.txt"
             with open(newPath, "w", encoding="utf-8") as f:
                 f.write(text)
             print(Fore.GREEN + f"Text saved to {newPath}")
@@ -84,8 +84,8 @@ For Batch images/folder: "tex -f path/to/folder/" or "tex path/to/folder/"
             print(Style.RESET_ALL + f"Your image path: {args.image}")
             print(f"Your image size: {image.size}")
             print(f"Language selected: {args.lang}")
-            print(f"Processing: {args.preprocess}")
-            print(f"Time taken: {end-start}s")
+            print(f"Processing: {'yes' if args.preprocess else 'no'}")
+            print(f"Time taken: {end-start:.2f}s")
 
     else:
         if args.folder:
@@ -145,11 +145,11 @@ For Batch images/folder: "tex -f path/to/folder/" or "tex path/to/folder/"
                     print(Fore.GREEN + f"Text saved to {newPath}")
                 end = perf_counter()
                 if args.verbose:
-                    print(Style.RESET_ALL + f"Your image path: {args.image}")
+                    print(Style.RESET_ALL + f"Your image path: {item}")
                     print(f"Your image size: {image.size}")
                     print(f"Language selected: {args.lang}")
-                    print(f"Processing: {args.preprocess}")
-                    print(f"Time taken: {end-start}s")
+                    print(f"Processing: {'yes' if args.preprocess else 'no'}")
+                    print(f"Time taken: {end-start:.2f}s")
 
             except Exception as e:
                 print(Fore.RED + f"Error processing {item}: {e}")
