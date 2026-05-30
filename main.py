@@ -4,7 +4,7 @@ from PIL import Image
 from preprocessor import preprocess
 from pathlib import Path
 import sys
-from colorama import Fore, Style, init
+from colorama import Fore, Style, init, Back
 from time import perf_counter
 
 try:
@@ -108,7 +108,15 @@ For Batch images/folder: "tex -f path/to/folder/" or "tex path/to/folder/"
         success = 0
         for pos, item in enumerate(files, start=1):
             try:
-                print(Style.RESET_ALL + f"[{pos}/{len(files)}] Processing: {item}")
+                start = perf_counter()
+
+                print(
+                    Back.GREEN
+                    + Fore.BLACK
+                    + f"[{pos}/{len(files)}]"
+                    + f"Processing: {item}"
+                    + Style.RESET_ALL
+                )
                 if args.preprocess:
                     image = preprocess(item)  # returns a PIL Image
                 else:
@@ -135,6 +143,14 @@ For Batch images/folder: "tex -f path/to/folder/" or "tex path/to/folder/"
                     with open(newPath, "w", encoding="utf-8") as f:
                         f.write(text)
                     print(Fore.GREEN + f"Text saved to {newPath}")
+                end = perf_counter()
+                if args.verbose:
+                    print(Style.RESET_ALL + f"Your image path: {args.image}")
+                    print(f"Your image size: {image.size}")
+                    print(f"Language selected: {args.lang}")
+                    print(f"Processing: {args.preprocess}")
+                    print(f"Time taken: {end-start}s")
+
             except Exception as e:
                 print(Fore.RED + f"Error processing {item}: {e}")
                 continue
