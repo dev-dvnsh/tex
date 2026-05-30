@@ -1,17 +1,17 @@
-import pytesseract
-import argparse
+from pytesseract import image_to_string
+from argparse import ArgumentParser, RawDescriptionHelpFormatter
 from PIL import Image
 from preprocessor import preprocess
 from pathlib import Path
-import sys
+from sys import exit
 from colorama import Fore, Style, init, Back
 from time import perf_counter
 
 try:
     init()
-    parser = argparse.ArgumentParser(
+    parser = ArgumentParser(
         prog="tex",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
+        formatter_class=RawDescriptionHelpFormatter,
         description="Extracts text from image files",
     )
 
@@ -58,10 +58,10 @@ For Batch images/folder: "tex -f path/to/folder/" or "tex path/to/folder/"
             image = preprocess(args.image)  # returns a PIL Image
         else:
             image = Image.open(args.image)  # load normally
-        text = pytesseract.image_to_string(image, args.lang)
+        text = image_to_string(image, args.lang)
         if text.strip() == "":
             print(Fore.RED + f"No text found in {args.image}")
-            sys.exit(0)
+            exit(0)
 
         if args.print:
             print(Style.RESET_ALL + text)
@@ -121,7 +121,7 @@ For Batch images/folder: "tex -f path/to/folder/" or "tex path/to/folder/"
                     image = preprocess(item)  # returns a PIL Image
                 else:
                     image = Image.open(item)  # load normally
-                text = pytesseract.image_to_string(image, args.lang)
+                text = image_to_string(image, args.lang)
                 if text.strip() == "":
                     print(Fore.YELLOW + f"No text found in {item}")
                     continue
@@ -154,7 +154,7 @@ For Batch images/folder: "tex -f path/to/folder/" or "tex path/to/folder/"
             except Exception as e:
                 print(Fore.RED + f"Error processing {item}: {e}")
                 continue
-        print(Fore.GREEN + f"{success}/{len(files)} images processed")
+        print(Fore.GREEN + f"[{success}/{len(files)}] images processed")
 
 
 except Exception as e:
